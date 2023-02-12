@@ -1,31 +1,23 @@
 import random
 
-import self as self
 
 class Cards:
-
-    nominal = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
-    suit = ["Hearts", "Diamonds", "Cross", "Spades"]
-    value = 0
+    card_value = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
+    card_suit = ["Hearts", "Diamonds", "Cross", "Spades"]
+    card_points = 0
 
     def __init__(self):
-        self.nominal = random.choice(self.nominal)
-        self.suit = random.choice(self.suit)
+        self.card_value = random.choice(self.card_value)
+        self.card_suit = random.choice(self.card_suit)
 
-    def card_value(self):
-        for item in self.nominal:
-            if item == "Jack" or item == "Queen" or item == "King":
-                value = 10
-            elif item == "Ace":
-                value = 11
-            value = int(item)
-            return value
+        if self.card_value == "Jack" or self.card_value == "Queen" or self.card_value == "King":
+            self.card_points = 10
+        elif self.card_value == "Ace":
+            self.card_points = 11
+        else:
+            self.card_points = int(self.card_value)
 
 
-card1 = Cards()
-print(card1.nominal)
-print(card1.suit)
-print(card1.card_value())
 
 
 
