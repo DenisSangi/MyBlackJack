@@ -16,9 +16,3 @@ class Cards:
             self.card_points = 11
         else:
             self.card_points = int(self.card_value)
-
-
-
-
-
-
