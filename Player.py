@@ -1,23 +1,13 @@
 from Cards import Cards
-from BlackJack import BlackJack
 
 class Player:
+    name = ""
+    player_cards = [Cards()]
 
-    def player_get_card():
-        player_card = Cards()
-        print("You have {value} of {suit}.".format(value=player_card.card_value, suit=player_card.card_suit))
-        return player_card
+    def __init__(self, name):
+        self.name = name
 
-    def player_lose(self):
-        print("It's to much")
-        BlackJack.loses_count + 1
-
-
-
-    def player_blackjack(self):
-        print("You have a BlackJack")
-        BlackJack.wins_count + 1
-
-
-card = Player.player_get_card()
-print(card)
+    def get_card(self):
+        generated_card = Cards()
+        Player.player_cards.append(generated_card)
+        print("{name} is have {value} of {suit}.".format(name=self.name, value=generated_card.card_value, suit=generated_card.card_suit))
