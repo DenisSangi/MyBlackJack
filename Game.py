@@ -2,65 +2,65 @@ from Player import Player
 
 
 class Game:
-    player = Player("")
-    dealer = Player("Dealer")
-    wins_count = 0
-    loses_count = 0
 
     @staticmethod
     def start_game():
 
-        choice_1 = input("Would ypu like to start  new game?"
-                         "Print 'y' or 'n'")
+        dealer = Player("Dealer")
+        Player.wins_count = 0
+        Player.loses_count = 0
+
+        choice_1 = input("Would ypu like to start  new game? "
+                         "Print 'y' or 'n': ")
 
         if choice_1 == "n":
             exit()
 
         elif choice_1 == "y":
-            Game.player.name = Player(input("Enter your name"))
+            player = Player("")
+            player.name = Player(input("Enter your name: "))
+            player.get_card()
+            player.get_card()
+            Game.cards_score(player)
 
-            Game.player.get_card()
-            Game.player.get_card()
-            Game.cards_score(Game.player)
-
-            if Game.cards_score(Game.player) == 21:
+            if Game.cards_score(player) == 21:
                 print("You have a BlackJack congratulations!")
-                Game.wins_count += 1
+                Player.wins_count += 1
                 Game.end_game()
 
-            elif Game.cards_score(Game.player) < 21:
-                choice_2 = input("Would you like to get another card?"
-                                 "Print 'y' or 'n'")
-                while choice_2 == 'y' and Game.cards_score(Game.player) < 21:
-                    Game.player.get_card()
-                    Game.cards_score(Game.player)
+            elif Game.cards_score(player) < 21:
+                choice_2 = input("Would you like to get another card? "
+                                 "Print 'y' or 'n': ")
+                while choice_2 == 'y' and Game.cards_score(player) < 21:
+                    player.get_card()
+                    Game.cards_score(player)
 
-            if Game.cards_score(Game.player) > 21:
-                Game.loses_count += 1
+            if Game.cards_score(player) > 21:
+                Player.loses_count += 1
                 print("You lose")
                 Game.end_game()
             else:
-                Game.dealer.get_card()
-                Game.dealer.get_card()
-                Game.cards_score(Game.dealer)
+                dealer.get_card()
+                dealer.get_card()
+                Game.cards_score(dealer)
 
-                if Game.cards_score(Game.dealer) == 21:
+                if Game.cards_score(dealer) == 21:
                     print("Dealer is having BlackJack!")
-                    Game.loses_count += 1
+                    Player.loses_count += 1
                     Game.end_game()
 
-                while Game.cards_score(Game.dealer) < 17:
-                    Game.dealer.get_card()
-                    Game.cards_score(Game.dealer)
+                while Game.cards_score(dealer) < 17:
+                    dealer.get_card()
+                    Game.cards_score(dealer)
 
-                    if Game.cards_score(Game.dealer) > 21:
-                        Game.wins_count += 1
+                    if Game.cards_score(dealer) > 21:
+                        Player.wins_count += 1
                         print("Yow win.")
                         Game.end_game()
 
     @staticmethod
     def end_game():
-        print("You have win {wins} times and lose {loses} times.".format(wins=Game.wins_count, loses=Game.loses_count))
+        print("You have win {wins} times and lose {loses} times.".format(wins=Player.wins_count, loses=Player.loses_count))
         ending_choice = input("Would you like to start next game? Print 'y' or 'n'.")
         if ending_choice == "y":
             Game.start_game()

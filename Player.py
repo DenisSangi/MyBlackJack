@@ -3,6 +3,8 @@ from Cards import Cards
 class Player:
     name = ""
     player_cards = [Cards()]
+    wins_count = 0
+    loses_count = 0
 
     def __init__(self, name):
         self.name = name
