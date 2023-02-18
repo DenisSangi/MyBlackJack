@@ -23,27 +23,30 @@ class Game:
             player.get_card()
             player.get_card()
             Player.cards_score(player)
+            print("{name} is having {score}.".format(name=player.name, score=Player.cards_score(player)))
 
-        if Player.cards_score(player) == 21:
-            print("You have a BlackJack congratulations!")
-            Player.wins_count += 1
-            Game.end_game()
+            if Player.cards_score(player) == 21:
+                print("You have a BlackJack congratulations!")
+                Player.wins_count += 1
+                Game.end_game()
 
-        elif Player.cards_score(player) < 21:
-            choice_2 = input("Would you like to get another card? "
+            if Player.cards_score(player) < 21:
+                choice_2 = input("Would you like to get another card? "
                                  "Print 'y' or 'n': ")
-            while choice_2 == 'y' and Player.cards_score(player) < 21:
-                player.get_card()
-                Player.cards_score(player)
+                while choice_2 == 'y' and Player.cards_score(player) < 21:
+                    player.get_card()
+                    Player.cards_score(player)
+                    print("{name} is having {score}.".format(name=player.name, score=Player.cards_score(player)))
 
-        if Player.cards_score(player) > 21:
-            Player.loses_count += 1
-            print("You lose")
-            Game.end_game()
-        else:
-            dealer.get_card()
-            dealer.get_card()
-            Player.cards_score(dealer)
+            if Player.cards_score(player) > 21:
+                Player.loses_count += 1
+                print("You lose")
+                Game.end_game()
+            else:
+                dealer.get_card()
+                dealer.get_card()
+                Player.cards_score(dealer)
+                print("{name} is having {score}.".format(name=dealer.name, score=Player.cards_score(dealer)))
 
             if Player.cards_score(dealer) == 21:
                 print("Dealer is having BlackJack!")
@@ -53,6 +56,7 @@ class Game:
             while Player.cards_score(dealer) < 17:
                 dealer.get_card()
                 Player.cards_score(dealer)
+                print("{name} is having {score}.".format(name=dealer.name, score=Player.cards_score(dealer)))
 
                 if Player.cards_score(dealer) > 21:
                     Player.wins_count += 1
