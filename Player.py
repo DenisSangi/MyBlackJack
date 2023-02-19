@@ -20,8 +20,15 @@ class Player:
     @staticmethod
     def cards_score(player):
         sum_of_cards = 0
+        sum_with_ace = 0
         for card in player.player_cards:
-            sum_of_cards += card.card_points
+            if card.card_value == "Ace":
+                sum_with_ace += card.card_points
+                if sum_with_ace <= 21:
+                    sum_of_cards += sum_with_ace
+                elif sum_with_ace > 21:
+                    card.card_points = 1
+                    sum_of_cards += card.card_points
+            else:
+                sum_of_cards += card.card_points
         return sum_of_cards
-
-

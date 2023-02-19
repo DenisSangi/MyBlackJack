@@ -35,7 +35,7 @@ class Game:
 
                     if player.sum_of_cards > 21:
                         Player.loses_count += 1
-                        print("You lose")
+                        print("You lose.")
                         Game.end_game(player, dealer)
 
                 elif choice_2 == 'n':
@@ -68,6 +68,9 @@ class Game:
             elif player.sum_of_cards < dealer.sum_of_cards:
                 Player.loses_count += 1
                 print("Dealer had win.")
+                Game.end_game(player, dealer)
+            else:
+                print("Draw.")
                 Game.end_game(player, dealer)
 
     @staticmethod
