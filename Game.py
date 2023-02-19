@@ -4,31 +4,26 @@ from Player import Player
 class Game:
 
     @staticmethod
-    def start_game():
-
-        player = Player("")
-        dealer = Player("Dealer")
-        Player.wins_count = 0
-        Player.loses_count = 0
+    def start_game(player, dealer):
 
         choice_1 = input("Would ypu like to start  new game? "
                          "Print 'y' or 'n': ")
 
         if choice_1 == "n":
+            print("Bye bye")
             exit()
 
         elif choice_1 == "y":
 
-            player.name = input("Enter your name: ")
             player.get_card()
             player.get_card()
-            Player.cards_score(player)
+            player.cards_score(player)
             print("{name} is having {score}.".format(name=player.name, score=Player.cards_score(player)))
 
-            if Player.cards_score(player) == 21:
+            if player.cards_score(player) == 21:
                 print("You have a BlackJack congratulations!")
                 Player.wins_count += 1
-                Game.end_game()
+                Game.end_game(player, dealer)
 
             if Player.cards_score(player) < 21:
                 choice_2 = input("Would you like to get another card? "
@@ -41,7 +36,7 @@ class Game:
             if Player.cards_score(player) > 21:
                 Player.loses_count += 1
                 print("You lose")
-                Game.end_game()
+                Game.end_game(player, dealer)
             else:
                 dealer.get_card()
                 dealer.get_card()
@@ -51,7 +46,7 @@ class Game:
             if Player.cards_score(dealer) == 21:
                 print("Dealer is having BlackJack!")
                 Player.loses_count += 1
-                Game.end_game()
+                Game.end_game(player, dealer)
 
             while Player.cards_score(dealer) < 17:
                 dealer.get_card()
@@ -61,16 +56,9 @@ class Game:
                 if Player.cards_score(dealer) > 21:
                     Player.wins_count += 1
                     print("Yow win.")
-                    Game.end_game()
+                    Game.end_game(player, dealer)
 
     @staticmethod
-    def end_game():
+    def end_game(player, dealer):
         print("You have win {wins} times and lose {loses} times.".format(wins=Player.wins_count, loses=Player.loses_count))
-        ending_choice = input("Would you like to start next game? Print 'y' or 'n'.")
-        if ending_choice == "y":
-            Game.start_game()
-        else:
-            print("Bye bye")
-            exit()
-
-
+        Game.start_game(player=player, dealer=dealer)
