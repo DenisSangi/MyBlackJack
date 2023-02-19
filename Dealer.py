@@ -1,9 +1,9 @@
 from Cards import Cards
 
 
-class Player:
+class Dealer:
     name = ""
-    player_cards = []
+    dealer_cards = []
     wins_count = 0
     loses_count = 0
     sum_of_cards = 0
@@ -13,14 +13,14 @@ class Player:
 
     def get_card(self):
         generated_card = Cards()
-        Player.player_cards.append(generated_card)
+        Dealer.dealer_cards.append(generated_card)
         print("{name} is have {value} of {suit}.".format(name=self.name, value=generated_card.card_value,
                                                          suit=generated_card.card_suit))
 
     @staticmethod
-    def cards_score(player):
+    def cards_score(dealer):
         sum_of_cards = 0
-        for card in player.player_cards:
+        for card in dealer.dealer_cards:
             sum_of_cards += card.card_points
         return sum_of_cards
 
