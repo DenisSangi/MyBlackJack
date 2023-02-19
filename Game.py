@@ -25,7 +25,7 @@ class Game:
                 Player.wins_count += 1
                 Game.end_game(player, dealer)
 
-            if player.sum_of_cards < 21:
+            while player.sum_of_cards < 21:
                 choice_2 = input("Would you like to get another card? "
                                  "Print 'y' or 'n': ")
                 if choice_2 == 'y':
@@ -38,10 +38,13 @@ class Game:
                         print("You lose")
                         Game.end_game(player, dealer)
 
-                dealer.get_card()
-                dealer.get_card()
-                dealer.sum_of_cards = Dealer.cards_score(dealer)
-                print("{name} is having {score}.".format(name=dealer.name, score=dealer.sum_of_cards))
+                elif choice_2 == 'n':
+                    break
+
+            dealer.get_card()
+            dealer.get_card()
+            dealer.sum_of_cards = Dealer.cards_score(dealer)
+            print("{name} is having {score}.".format(name=dealer.name, score=dealer.sum_of_cards))
 
             if dealer.sum_of_cards == 21:
                 print("Dealer is having BlackJack!")
@@ -53,10 +56,10 @@ class Game:
                 dealer.sum_of_cards = Dealer.cards_score(dealer)
                 print("{name} is having {score}.".format(name=dealer.name, score=dealer.sum_of_cards))
 
-                if dealer.sum_of_cards > 21:
-                    Player.wins_count += 1
-                    print("Yow win.")
-                    Game.end_game(player, dealer)
+            if dealer.sum_of_cards > 21:
+                Player.wins_count += 1
+                print("Yow win.")
+                Game.end_game(player, dealer)
 
             if player.sum_of_cards > dealer.sum_of_cards:
                 Player.wins_count += 1
