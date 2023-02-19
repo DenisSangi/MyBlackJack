@@ -67,11 +67,10 @@ class Game:
                 print("Dealer had win.")
                 Game.end_game(player, dealer)
 
-
-
     @staticmethod
     def end_game(player, dealer):
-        print("You have win {wins} times and lose {loses} times.".format(wins=Player.wins_count, loses=Player.loses_count))
+        print("You have win {wins} times and lose {loses} times.".format(wins=Player.wins_count,
+                                                                         loses=Player.loses_count))
         Player.player_cards = []
         Dealer.dealer_cards = []
         Game.start_game(player=player, dealer=dealer)
