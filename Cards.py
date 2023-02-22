@@ -2,7 +2,7 @@ import random
 
 
 class Cards:
-    card_value = ["5", "6", "7", "Ace"]
+    card_value = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
     card_suit = ["Hearts", "Diamonds", "Cross", "Spades"]
     card_points = 0
 
