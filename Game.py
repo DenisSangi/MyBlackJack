@@ -18,6 +18,10 @@ class Game:
             player.get_card()
             player.get_card()
             player.sum_of_cards = Player.cards_score(player)
+            ace_number = Player.ace_check(player)
+            while ace_number != 0 and player.sum_of_cards > 21:
+                ace_number -= 1
+                player.sum_of_cards -= 10
             print("{name} is having {score}.".format(name=player.name, score=player.sum_of_cards))
 
             if player.sum_of_cards == 21:
@@ -31,6 +35,10 @@ class Game:
                 if choice_2 == 'y':
                     player.get_card()
                     player.sum_of_cards = Player.cards_score(player)
+                    ace_number = Player.ace_check(player)
+                    while ace_number != 0 and player.sum_of_cards > 21:
+                        ace_number -= 1
+                        player.sum_of_cards -= 10
                     print("{name} is having {score}.".format(name=player.name, score=player.sum_of_cards))
 
                     if player.sum_of_cards > 21:
@@ -44,6 +52,10 @@ class Game:
             dealer.get_card()
             dealer.get_card()
             dealer.sum_of_cards = Dealer.cards_score(dealer)
+            ace_number = Dealer.ace_check(dealer)
+            while ace_number != 0 and dealer.sum_of_cards > 21:
+                ace_number -= 1
+                dealer.sum_of_cards -= 10
             print("{name} is having {score}.".format(name=dealer.name, score=dealer.sum_of_cards))
 
             if dealer.sum_of_cards == 21:
@@ -54,6 +66,10 @@ class Game:
             while dealer.sum_of_cards < 17:
                 dealer.get_card()
                 dealer.sum_of_cards = Dealer.cards_score(dealer)
+                ace_number = Dealer.ace_check(dealer)
+                while ace_number != 0 and dealer.sum_of_cards > 21:
+                    ace_number -= 1
+                    dealer.sum_of_cards -= 10
                 print("{name} is having {score}.".format(name=dealer.name, score=dealer.sum_of_cards))
 
             if dealer.sum_of_cards > 21:

@@ -20,21 +20,15 @@ class Dealer:
     @staticmethod
     def cards_score(dealer):
         sum_of_dealer_cards = 0
-        sum_with_ace = 0
-
         for card in dealer.dealer_cards:
-            ace_counter = 0
-            if card.card_value == "Ace" in dealer.dealer_cards:
-                ace_counter += 1
-                sum_with_ace += card.card_points
-                if ace_counter == 1 and sum_with_ace > 21:
-                    sum_with_ace += card.card_points - ace_counter * 10
-                    sum_of_dealer_cards = sum_with_ace
-                elif ace_counter > 1:
-                    while sum_with_ace > 21:
-                        sum_with_ace += card.card_points - (ace_counter-1) * 10
-                        sum_of_dealer_cards = sum_with_ace
-                        break
-            else:
-                sum_of_dealer_cards += card.card_points
+            sum_of_dealer_cards += card.card_points
         return sum_of_dealer_cards
+
+    @staticmethod
+    def ace_check(dealer):
+        ace_counter = 0
+        for card in dealer.dealer_cards:
+            for value in card.card_value:
+                if value == "A":
+                    ace_counter += 1
+        return ace_counter
