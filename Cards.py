@@ -16,3 +16,10 @@ class Cards:
             self.card_points = 11
         else:
             self.card_points = int(self.card_value)
+
+    @staticmethod
+    def get_card(player):
+        generated_card = Cards()
+        player.player_cards.append(generated_card)
+        print("{name} is have {value} of {suit}.".format(name=player.name, value=generated_card.card_value,
+                                                         suit=generated_card.card_suit))

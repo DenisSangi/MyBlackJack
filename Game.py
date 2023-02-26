@@ -1,12 +1,11 @@
 from Player import Player
-from Dealer import Dealer
-
+from Cards import Cards
 
 class Game:
     @staticmethod
     def start_game(player, dealer):
 
-        choice_1 = input("Would ypu like to start  new game? "
+        choice_1 = input("Would you like to start  new game? "
                          "Print 'y' or 'n': ")
 
         if choice_1 == "n":
@@ -15,10 +14,10 @@ class Game:
 
         elif choice_1 == "y":
 
-            player.get_card()
-            player.get_card()
-            player.sum_of_cards = Player.cards_score(player)
-            ace_number = Player.ace_check(player)
+            Cards.get_card(player)
+            Cards.get_card(player)
+            player.sum_of_cards = player.cards_score(player)
+            ace_number = player.ace_check(player)
             while ace_number != 0 and player.sum_of_cards > 21:
                 ace_number -= 1
                 player.sum_of_cards -= 10
@@ -33,9 +32,9 @@ class Game:
                 choice_2 = input("Would you like to get another card? "
                                  "Print 'y' or 'n': ")
                 if choice_2 == 'y':
-                    player.get_card()
-                    player.sum_of_cards = Player.cards_score(player)
-                    ace_number = Player.ace_check(player)
+                    Cards.get_card(player)
+                    player.sum_of_cards = player.cards_score(player)
+                    ace_number = player.ace_check(player)
                     while ace_number != 0 and player.sum_of_cards > 21:
                         ace_number -= 1
                         player.sum_of_cards -= 10
@@ -49,10 +48,11 @@ class Game:
                 elif choice_2 == 'n':
                     break
 
-            dealer.get_card()
-            dealer.get_card()
-            dealer.sum_of_cards = Dealer.cards_score(dealer)
-            ace_number = Dealer.ace_check(dealer)
+            Player.player_cards = []
+            Cards.get_card(dealer)
+            Cards.get_card(dealer)
+            dealer.sum_of_cards = dealer.cards_score(dealer)
+            ace_number = dealer.ace_check(dealer)
             while ace_number != 0 and dealer.sum_of_cards > 21:
                 ace_number -= 1
                 dealer.sum_of_cards -= 10
@@ -64,9 +64,9 @@ class Game:
                 Game.end_game(player, dealer)
 
             while dealer.sum_of_cards < 17:
-                dealer.get_card()
-                dealer.sum_of_cards = Dealer.cards_score(dealer)
-                ace_number = Dealer.ace_check(dealer)
+                Cards.get_card(dealer)
+                dealer.sum_of_cards = dealer.cards_score(dealer)
+                ace_number = dealer.ace_check(dealer)
                 while ace_number != 0 and dealer.sum_of_cards > 21:
                     ace_number -= 1
                     dealer.sum_of_cards -= 10
@@ -93,6 +93,6 @@ class Game:
     def end_game(player, dealer):
         print("You have win {wins} times and lose {loses} times.".format(wins=Player.wins_count,
                                                                          loses=Player.loses_count))
-        Player.player_cards = []
-        Dealer.dealer_cards = []
+        player.player_cards = []
+        dealer.dealer_cards = []
         Game.start_game(player=player, dealer=dealer)
